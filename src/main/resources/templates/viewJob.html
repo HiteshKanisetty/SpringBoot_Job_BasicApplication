@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Jobs</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            margin: 0;
+        }
+
+        .container {
+            width: 75%;
+            margin: 40px auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .job-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px #ccc;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .company {
+            color: #444;
+            margin-top: 5px;
+        }
+
+        .location {
+            color: #777;
+        }
+
+        .type {
+            margin-top: 5px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .desc {
+            margin-top: 10px;
+        }
+
+        .skills {
+            margin-top: 10px;
+        }
+
+        .skill {
+            display: inline-block;
+            background: #e0f0ff;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .actions {
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .edit {
+            background: #28a745;
+        }
+
+        .delete {
+            background: #dc3545;
+        }
+
+        .home {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            text-decoration: none;
+            background: #4facfe;
+            color: white;
+            padding: 10px;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Available Jobs</h2>
+
+    <!-- 🔁 Loop through jobs -->
+    <div th:each="job : ${jobs}" class="job-card">
+
+        <div class="title" th:text="${job.title}"></div>
+
+        <div class="company" th:text="${job.company}"></div>
+
+        <div class="location" th:text="${job.location}"></div>
+
+        <div class="type">
+            Type: <span th:text="${job.jobType}"></span>
+        </div>
+
+        <div class="desc" th:text="${job.description}"></div>
+
+        <!-- ✅ Skills List -->
+        <div class="skills">
+            <strong>Skills:</strong><br>
+
+            <span th:each="skill : ${job.skills}"
+                  th:text="${skill}"
+                  class="skill">
+            </span>
+        </div>
+
+        <!-- ⚙️ Actions -->
+        <div class="actions">
+            <a th:href="@{/editJob/{id}(id=${job.id})}" class="btn edit">Edit</a>
+
+            <a th:href="@{/deleteJob/{id}(id=${job.id})}"
+               class="btn delete"
+               onclick="return confirm('Are you sure?')">
+                Delete
+            </a>
+        </div>
+
+    </div>
+
+    <!-- 🏠 Back -->
+    <a th:href="@{/
+}" class="home">Back to Home</a>
+
+</div>
+
+</body>
+</html>

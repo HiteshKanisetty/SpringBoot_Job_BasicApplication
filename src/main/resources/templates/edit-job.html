@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Job</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            margin: 0;
+        }
+
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .section {
+            margin-top: 15px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #218838;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Edit Job</h2>
+
+    <form th:action="@{/updateJob}" method="post">
+
+        <!-- 🔑 VERY IMPORTANT (for update) -->
+        <input type="hidden" name="id" th:value="${job.id}">
+
+        <!-- Text Fields -->
+        <input type="text" name="title" th:value="${job.title}" required>
+        <input type="text" name="company" th:value="${job.company}" required>
+        <input type="text" name="location" th:value="${job.location}" required>
+
+        <textarea name="description" th:text="${job.description}"></textarea>
+
+        <!-- 🔘 Radio (Job Type) -->
+        <div class="section">
+            <strong>Job Type:</strong><br>
+
+            <label>
+                <input type="radio" name="jobType" value="Full-Time"
+                       th:checked="${job.jobType == 'Full-Time'}"> Full-Time
+            </label>
+
+            <label>
+                <input type="radio" name="jobType" value="Part-Time"
+                       th:checked="${job.jobType == 'Part-Time'}"> Part-Time
+            </label>
+
+            <label>
+                <input type="radio" name="jobType" value="Internship"
+                       th:checked="${job.jobType == 'Internship'}"> Internship
+            </label>
+        </div>
+
+        <!-- ☑️ Checkboxes (Skills) -->
+        <div class="section">
+            <strong>Required Skills:</strong><br>
+
+            <label>
+                <input type="checkbox" name="skills" value="Java"
+                       th:checked="${job.skills != null and job.skills.contains('Java')}">
+                Java
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="Spring"
+                       th:checked="${job.skills != null and job.skills.contains('Spring')}">
+                Spring
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="React"
+                       th:checked="${job.skills != null and job.skills.contains('React')}">
+                React
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="SQL"
+                       th:checked="${job.skills != null and job.skills.contains('SQL')}">
+                SQL
+            </label>
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn">Update Job</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

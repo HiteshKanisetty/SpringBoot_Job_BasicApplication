@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Job</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            margin: 0;
+        }
+
+        .container {
+            width: 40%;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .section {
+            margin-top: 15px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #007bff;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Add Job</h2>
+
+    <form th:action="@{/saveJob}" method="post">
+
+        <!-- Basic Fields -->
+        <input type="text" name="title" placeholder="Job Title" required>
+        <input type="text" name="company" placeholder="Company Name" required>
+        <input type="text" name="location" placeholder="Location" required>
+
+        <textarea name="description" placeholder="Job Description"></textarea>
+
+        <!-- 🔘 Radio Buttons -->
+        <div class="section">
+            <strong>Job Type:</strong><br>
+
+            <label>
+                <input type="radio" name="jobType" value="Full-Time"> Full-Time
+            </label>
+
+            <label>
+                <input type="radio" name="jobType" value="Part-Time"> Part-Time
+            </label>
+
+            <label>
+                <input type="radio" name="jobType" value="Internship"> Internship
+            </label>
+        </div>
+
+        <!-- ☑️ Checkboxes -->
+        <div class="section">
+            <strong>Required Skills:</strong><br>
+
+            <label>
+                <input type="checkbox" name="skills" value="Java"> Java
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="Spring"> Spring
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="React"> React
+            </label>
+
+            <label>
+                <input type="checkbox" name="skills" value="SQL"> SQL
+            </label>
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn">Save Job</button>
+
+    </form>
+</div>
+
+</body>
+</html>
