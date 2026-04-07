@@ -13,21 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class JobController {
-//
-//        @GetMapping("/")
-//        public String home() {
-//            return "home"; // home.html
-//        }
-//
-//        @GetMapping("/addJob")
-//        public String addJobPage() {
-//            return "addJob";
-//        }
-//
-//        @GetMapping("/viewJobs")
-//        public String viewJobsPage() {
-//            return "view-jobs";
-//        }
+
     @Autowired
     private JobService service;
 
@@ -43,7 +29,7 @@ public class JobController {
         return "addJob";
     }
 
-    // 💾 SAVE JOB (FORM SUBMIT)
+
     @PostMapping("/saveJob")
     public String saveJob(@ModelAttribute Job job) {
         service.saveJob(job);
