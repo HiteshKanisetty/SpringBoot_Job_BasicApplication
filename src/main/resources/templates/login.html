@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+
+  <style>
+    body {
+        font-family: Arial;
+        background: linear-gradient(to right, #ff9966, #ff5e62);
+        margin: 0;
+    }
+
+    .container {
+        width: 350px;
+        margin: 120px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px;
+        background: #ff5e62;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background: #e14b50;
+    }
+
+    .link {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .error {
+        color: red;
+        text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Login</h2>
+
+  <form th:action="@{/login}" method="post">
+
+    <input type="text" name="username" placeholder="Username" required>
+
+    <input type="password" name="password" placeholder="Password" required>
+
+    <button type="submit" class="btn">Login</button>
+
+  </form>
+
+  <!-- Optional error message -->
+  <p class="error" th:if="${error}" th:text="${error}"></p>
+
+  <div class="link">
+    <a th:href="@{/register}">Don't have an account? Register</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -47,11 +47,21 @@
 <div class="container">
     <h1>Welcome to Job Portal</h1>
 
-    <!-- Add Job Button -->
-    <a th:href="@{/addJob}" class="btn">Add Job</a>
+    < <p class="role">
+    Logged in as: <span th:text="${session.loggedUser.username}"></span> |
+    Role: <span th:text="${session.role}"></span>
+</p>
 
-    <!-- View Jobs Button -->
+    <!-- ➕ ADMIN ONLY -->
+    <div th:if="${session.role == 'ADMIN'}">
+        <a th:href="@{/addJob}" class="btn">Add Job</a>
+    </div>
+
+    <!-- 👁️ Everyone -->
     <a th:href="@{/viewJobs}" class="btn">View Jobs</a>
+
+    <!-- 🚪 Logout -->
+    <a th:href="@{/logout}" class="btn logout">Logout</a>
 </div>
 
 </body>

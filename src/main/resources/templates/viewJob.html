@@ -132,7 +132,8 @@
         </div>
 
         <!-- ⚙️ Actions -->
-        <div class="actions">
+        <div class="actions" th:if="${session.role == 'ADMIN'}">
+
             <a th:href="@{/editJob/{id}(id=${job.id})}" class="btn edit">Edit</a>
 
             <a th:href="@{/deleteJob/{id}(id=${job.id})}"
@@ -140,6 +141,7 @@
                onclick="return confirm('Are you sure?')">
                 Delete
             </a>
+
         </div>
 
     </div>
